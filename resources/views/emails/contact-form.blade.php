@@ -71,6 +71,7 @@
                                 input.next('.invalid-feedback').text(errors[field][0]);
                             }
                         }
+                    
                     }
                 });
             });

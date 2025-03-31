@@ -21,7 +21,7 @@ class ContactFormMail extends Mailable
     }
 
     /**
-     * Get the message application from.
+     * Create a new message instance.
      */
 
     public function build()
