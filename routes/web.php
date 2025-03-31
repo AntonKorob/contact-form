@@ -7,4 +7,4 @@ Route::get('/', function () {
     return view('contact-form');
 });
 
-Rout::post('/contact'. [ContactController::class,'store'])->name('contact.store');
+Route::post('/contact'. [ContactController::class,'store'])->name('contact.store');
