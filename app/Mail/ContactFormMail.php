@@ -20,6 +20,10 @@ class ContactFormMail extends Mailable
         $this->contact = $contact;
     }
 
+    /**
+     * Get the message application from.
+     */
+
     public function build()
     {
         return $this->subjrct('New application from contact form')
