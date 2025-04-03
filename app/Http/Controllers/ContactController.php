@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Services\EmailStorageService;
 
 class ContactController extends Controller
 {
+    public function __construct(
+        protected EmailStorageService $emailStorage
+    ) {}
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -26,11 +29,9 @@ class ContactController extends Controller
         ]);
     }
 
-    protected function saveEmailToFile(Contact $contact)
-    {
-        $emailContent = view('emails.contact-form', compact('contact'))->render();
-        $filename = 'emails/contact_'.now()->format('Y-m-d_H-i-s').'.html';
-        
-        Storage::disk('local')->put($filename, $emailContent);
-    }
+    protected function saveEmailToFile(Contact $contact): void
+{
+    $emailContent = view('emails.contact', compact('contact'))->render();
+    $this->emailStorage->saveEmail($emailContent);
+}
 }
